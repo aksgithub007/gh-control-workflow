@@ -14,8 +14,8 @@ jobs:
           - node: 18
             os: ubuntu-latest
         exclude:
-          - node: [12, 14]
-            os: [windows-latest, macos-latest, ubuntu-latest]
+          - node: 12
+            os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: Get Code
