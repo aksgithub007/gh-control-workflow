@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: display message from reusable workflow
-        run: echo " ${{ needs.deploy.outputs.deploy-status }} "
+        run: echo " ${{ needs.deploy.outputs.result }} "
 
   report:
     needs: [lint, deploy]
