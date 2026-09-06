@@ -8,14 +8,14 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
         node: [12, 14, 16, latest]
-    include:
-      - node: 18
-        os: ubuntu-latest
-    exclude:
-      - node: [12, 14]
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - node: 18
+            os: ubuntu-latest
+        exclude:
+          - node: [12, 14]
+            os: [windows-latest, macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Get Code
