@@ -1,0 +1,26 @@
+name: matrix demo
+on: push
+branches:
+  - main
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [12, 14, 16, latest]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v7
+      - name: setup node js
+        uses: actions/setup-node@v7
+        with:
+          node-version: latest
+      - name: install dependencies
+        run: npm ci
+      - name: build app
+        run: npm run build
+      - name: display values
+        run: |
+          echo "OS is ${{ matrix.os }}"
+          echo "Node version is ${{ matrix.node }}"
