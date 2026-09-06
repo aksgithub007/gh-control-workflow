@@ -76,3 +76,10 @@ jobs:
         run: ls
       - name: Deploy
         run: echo "Deploying..."
+  report:
+    needs:[lint, deploy]
+    runs-on:ubuntu-latest
+    if: failure()
+    steps:
+      - name: Get Info
+        run: echo "${{ needs.lint.result }} and ${{ needs.deploy.result }}"
