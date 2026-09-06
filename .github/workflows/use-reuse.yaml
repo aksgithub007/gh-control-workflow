@@ -72,6 +72,13 @@ jobs:
     uses: ./.github/workflows/reusable.yaml
     with:
       artifact-name: dist-files
+      # some-secret: ${{ secrets.some-secret }}
+  deploy-status:
+    needs: deploy
+    steps:
+      - name: display message from reusable workflow
+        run: echo " ${{ needs.deploy.outputs.deploy-status }} "
+
   report:
     needs: [lint, deploy]
     runs-on: ubuntu-latest

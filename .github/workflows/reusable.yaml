@@ -7,13 +7,26 @@ on:
         required: false
         default: dist
         type: string
+    # secrets:
+    # some-secret:
+    # required: false
+    outputs:
+      result:
+        description: this is a result output
+        value: ${{ jobs.deploy.outputs.outcome }}
+
 jobs:
   deploy:
+    outputs:
+      outcome: ${{ steps.result.ouputs.deploy-status }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Build Artifacts
         uses: actions/download-artifact@v7
         with:
           name: ${{ inputs.artifact-name }}
+      - name: transfer ouput
+        id: result
+        run: echo " deploy-status=success" >> $GITHUB_OUTPUT
       - name: display values
         run: echo "deploying & deploying"
