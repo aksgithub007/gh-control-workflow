@@ -27,6 +27,6 @@ jobs:
           name: ${{ inputs.artifact-name }}
       - name: transfer ouput
         id: result-message
-        run: echo " deploy-status=success" >> $GITHUB_OUTPUT
+        run: echo "deploy-status=success" >> $GITHUB_OUTPUT
       - name: display values
         run: echo "deploying & deploying"
