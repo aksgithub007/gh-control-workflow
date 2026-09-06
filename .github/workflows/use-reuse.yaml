@@ -75,6 +75,7 @@ jobs:
       # some-secret: ${{ secrets.some-secret }}
   deploy-status:
     needs: deploy
+    runs-on: ubuntu-latest
     steps:
       - name: display message from reusable workflow
         run: echo " ${{ needs.deploy.outputs.deploy-status }} "
